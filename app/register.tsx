@@ -54,7 +54,7 @@ export default function RegisterScreen() {
         {/* Título Principal */}
         <Text style={styles.mainTitle}>Bora fazer parte?</Text>
         <Text style={styles.mainSubtitle}>
-          Crie sua conta e encontre companhia para jogar online ou perto de você.
+          Crie sua conta e encontre companhia para participar de encontros e partidas perto de você.
         </Text>
 
         {/* Formulário */}

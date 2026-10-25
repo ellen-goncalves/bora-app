@@ -36,10 +36,10 @@ export default function LoginScreen() {
       <View style={styles.content}>
         <View style={styles.logoContainer}>
           <View style={styles.logoIconBox}>
-            <Ionicons name="game-controller" size={32} color="#FFF" />
+            <Ionicons name="people" size={32} color="#FFF" />
           </View>
           <Text style={styles.appName}>bora</Text>
-          <Text style={styles.tagline}>Do competitivo à quadra, jogue junto.</Text>
+          <Text style={styles.tagline}>Esportes, tabuleiro e cartas. Jogue junto.</Text>
         </View>
 
         <View style={styles.formContainer}>

@@ -12,9 +12,11 @@ import {
 import { Ionicons, Feather, MaterialCommunityIcons } from '@expo/vector-icons';
 import { router } from 'expo-router';
 import { useApp } from '../../context/AppContext';
+import {useSports} from '../../context/SportsContext';
 
 export default function ProfileScreen() {
-  const { userProfile, friends, matches } = useApp();
+  const { userProfile, friends } = useApp();
+  const {matches} = useSports();
 
   const handleLogout = () => {
     // Redireciona de volta para a tela de login na raiz
@@ -80,8 +82,8 @@ export default function ProfileScreen() {
             <Text style={styles.sportChipText}>Vôlei</Text>
           </View>
           <View style={styles.sportChip}>
-            <Ionicons name="game-controller-outline" size={16} color="#F04E23" style={{ marginRight: 6 }} />
-            <Text style={styles.sportChipText}>VALORANT</Text>
+            <Ionicons name="grid-outline" size={16} color="#F04E23" style={{ marginRight: 6 }} />
+            <Text style={styles.sportChipText}>Xadrez</Text>
           </View>
           <View style={styles.sportChip}>
             <Ionicons name="football-outline" size={16} color="#F04E23" style={{ marginRight: 6 }} />
@@ -95,15 +97,11 @@ export default function ProfileScreen() {
           <TouchableOpacity
             key={item.id}
             style={styles.agendaCard}
-            onPress={() => router.push(item.type === 'Online' ? ('/online-team' as any) : ('/match-details' as any))}
+            onPress={() => router.push({pathname:'/partidas/[id]',params:{id:item.id}})}
           >
             <View style={styles.agendaCardLeft}>
               <View style={styles.agendaIconBox}>
-                {item.type === 'Online' ? (
-                  <Ionicons name="game-controller-outline" size={20} color="#F04E23" />
-                ) : (
-                  <MaterialCommunityIcons name="volleyball" size={20} color="#F04E23" />
-                )}
+                <MaterialCommunityIcons name="account-group-outline" size={20} color="#F04E23" />
               </View>
               <View style={{ marginLeft: 10 }}>
                 <Text style={styles.agendaTitle}>{item.title}</Text>

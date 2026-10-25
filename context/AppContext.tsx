@@ -4,7 +4,7 @@ export interface Match {
   id: string;
   title: string;
   category: string;
-  type: 'Online' | 'Presencial';
+  type: 'Presencial';
   date: string;
   locationOrPlatform: string;
   vacancies: number;
@@ -81,7 +81,7 @@ export const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
     name: 'Lucas',
     username: '@lucasjoga',
     location: 'Vila Mariana, São Paulo',
-    bio: 'Do competitivo à quadra, o melhor é jogar junto.',
+    bio: 'Esportes, tabuleiro e cartas: bora jogar junto.',
     playedCount: 24,
     organizedCount: 8,
     scheduledCount: 2,
@@ -91,11 +91,11 @@ export const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
   const [matches, setMatches] = useState<Match[]>([
     {
       id: '1',
-      title: 'Bora fechar o squad?',
-      category: 'VALORANT · Competitivo',
-      type: 'Online',
+      title: 'Bora jogar xadrez?',
+      category: 'Xadrez · Recreativo',
+      type: 'Presencial',
       date: 'Hoje, 9 out. · 21h',
-      locationOrPlatform: 'PC · servidor BR',
+      locationOrPlatform: 'Biblioteca do bairro',
       vacancies: 2,
       totalSpots: 5,
       participants: ['Lucas', 'Rafa', 'Bia'],
@@ -125,9 +125,9 @@ export const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
     {
       id: 'rafa',
       name: 'Rafa',
-      status: 'Jogando VALORANT',
+      status: 'Disponível para jogar',
       isOnline: true,
-      gameDesc: 'PC · servidor BR',
+      gameDesc: 'Xadrez · presencial',
       avatarUrl: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150',
     },
     {
@@ -135,7 +135,7 @@ export const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
       name: 'Pedro',
       status: 'Visto há 20 min',
       isOnline: false,
-      gameDesc: 'EA FC · PS5',
+      gameDesc: 'Uno · presencial',
       avatarUrl: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150',
     },
   ]);
@@ -162,10 +162,10 @@ export const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
       { id: '2', sender: 'me', text: 'Com certeza! Que horas mesmo?', time: '10:32' },
     ],
     rafa: [
-      { id: '1', sender: 'other', text: 'Bora fechar o squad no Valo hoje 21h?', time: '18:10' },
+      { id: '1', sender: 'other', text: 'Bora jogar xadrez sábado à tarde?', time: '18:10' },
     ],
     pedro: [
-      { id: '1', sender: 'other', text: 'Fechou a partida de EA FC no fds?', time: 'Ontem' },
+      { id: '1', sender: 'other', text: 'Fechou a mesa de Uno no fim de semana?', time: 'Ontem' },
     ],
   });
 
@@ -240,8 +240,8 @@ export const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
     setTimeout(() => {
       const iaResponses: Record<string, string[]> = {
         bia: ['Boa! Já confirmei minha presença no Vôlei!', 'Partiu! Vou levar as bolas de vôlei.'],
-        rafa: ['Bora de VALORANT! Já estou logado no PC.', 'Boa jogada!'],
-        pedro: ['Golaço! Bora mandar uma partida no PS5.', 'Hoje à noite estou livre!'],
+        rafa: ['Bora! Nos vemos no local combinado.', 'Boa jogada!'],
+        pedro: ['Fechado! Vou levar o baralho.', 'Hoje à noite estou livre!'],
       };
       const options = iaResponses[friendId] || ['Fechado! Tmj no Bora!'];
       const randomReply = options[Math.floor(Math.random() * options.length)];

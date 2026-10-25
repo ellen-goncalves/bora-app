@@ -1,10 +1,11 @@
 import { Stack } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 import { AppProvider } from '../context/AppContext';
+import { SportsProvider } from '../context/SportsContext';
 
 export default function RootLayout() {
   return (
-    <AppProvider>
+    <AppProvider><SportsProvider>
       <StatusBar style="dark" />
       <Stack screenOptions={{ headerShown: false }}>
         {/* A primeira tela exibida será sempre o index.tsx na raiz */}
@@ -19,10 +20,9 @@ export default function RootLayout() {
         <Stack.Screen name="notifications" />
         <Stack.Screen name="create-match" />
         <Stack.Screen name="match-details" />
-        <Stack.Screen name="online-team" />
-        <Stack.Screen name="presencial-match" />
+        <Stack.Screen name="partidas/[id]" />
         <Stack.Screen name="edit-profile" />
       </Stack>
-    </AppProvider>
+    </SportsProvider></AppProvider>
   );
 }
