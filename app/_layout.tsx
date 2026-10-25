@@ -1,18 +1,20 @@
 import { Stack } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 import { AppProvider } from '../context/AppContext';
+import { AuthProvider } from '../context/AuthContext';
 import { SportsProvider } from '../context/SportsContext';
 
 export default function RootLayout() {
   return (
-    <AppProvider><SportsProvider>
+    <AuthProvider><AppProvider><SportsProvider>
       <StatusBar style="dark" />
       <Stack screenOptions={{ headerShown: false }}>
-        {/* A primeira tela exibida será sempre o index.tsx na raiz */}
+        {/* A raiz redireciona visitantes para a tela inicial pública. */}
         <Stack.Screen name="index" />
         <Stack.Screen name="register" />
+        <Stack.Screen name="login" />
         
-        {/* Grupo de abas protegido */}
+        {/* Abas públicas: visitantes podem explorar partidas. */}
         <Stack.Screen name="(tabs)" />
 
         {/* Telas internas e Modais */}
@@ -23,6 +25,6 @@ export default function RootLayout() {
         <Stack.Screen name="partidas/[id]" />
         <Stack.Screen name="edit-profile" />
       </Stack>
-    </SportsProvider></AppProvider>
+    </SportsProvider></AppProvider></AuthProvider>
   );
 }

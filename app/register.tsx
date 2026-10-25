@@ -10,9 +10,12 @@ import {
   StatusBar,
 } from 'react-native';
 import { FontAwesome, Ionicons } from '@expo/vector-icons';
-import { router } from 'expo-router';
+import { router, useLocalSearchParams } from 'expo-router';
+import {useAuth} from '../context/AuthContext';
 
 export default function RegisterScreen() {
+  const {signIn}=useAuth();
+  const {returnTo}=useLocalSearchParams<{returnTo?:string}>();
   const [fullName, setFullName] = useState('');
   const [birthDate, setBirthDate] = useState('');
   const [email, setEmail] = useState('');
@@ -24,7 +27,8 @@ export default function RegisterScreen() {
 
   const handleRegister = () => {
     // Após o cadastro, direciona para as abas principais
-    router.replace('/(tabs)');
+    signIn();
+    router.replace((returnTo && returnTo.startsWith('/') && !returnTo.startsWith('//') ? returnTo : '/(tabs)/tela-inicio') as any);
   };
 
   return (

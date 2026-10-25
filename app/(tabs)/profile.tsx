@@ -11,18 +11,34 @@ import {
 } from 'react-native';
 import { Ionicons, Feather, MaterialCommunityIcons } from '@expo/vector-icons';
 import { router } from 'expo-router';
+import {useAuth} from '../../context/AuthContext';
+import {Action,palette} from '../../components/SportsUI';
 import { useApp } from '../../context/AppContext';
 import {useSports} from '../../context/SportsContext';
 
 export default function ProfileScreen() {
   const { userProfile, friends } = useApp();
+  const {isAuthenticated,signOut}=useAuth();
   const {matches} = useSports();
 
   const handleLogout = () => {
     // Redireciona de volta para a tela de login na raiz
-    router.replace('/' as any);
+    signOut();
+    router.replace('/(tabs)/tela-inicio' as any);
   };
 
+  if (!isAuthenticated) return <SafeAreaView style={styles.container}>
+    <ScrollView contentContainerStyle={[styles.scrollContent,{flexGrow:1,justifyContent:'center',gap:18}]}>
+      <View style={{alignItems:'center',gap:12,padding:24,backgroundColor:'#FFFFFF',borderRadius:24,borderWidth:1,borderColor:palette.line}}>
+        <Ionicons name="person-circle-outline" size={82} color={palette.teal} accessibilityElementsHidden importantForAccessibility="no-hide-descendants"/>
+        <Text accessibilityRole="header" style={{fontSize:28,fontWeight:'800',color:palette.ink,textAlign:'center'}}>Seu espaço no Bora</Text>
+        <Text style={{fontSize:17,lineHeight:26,textAlign:'center',color:palette.muted}}>Entre para acompanhar sua agenda, organizar partidas, gerenciar solicitações e conhecer pessoas.</Text>
+      </View>
+      <Action label="Entrar na minha conta" onPress={()=>router.push('/login')}/>
+      <Action secondary label="Criar conta grátis" onPress={()=>router.push('/register')}/>
+      <Action secondary label="Continuar explorando" onPress={()=>router.push('/(tabs)/tela-inicio')}/>
+    </ScrollView>
+  </SafeAreaView>;
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar barStyle="dark-content" backgroundColor="#FAFAFA" />

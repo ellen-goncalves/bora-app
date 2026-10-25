@@ -34,7 +34,12 @@
           "backgroundColor": "#ffffff"
         }
       ],
-      "expo-sqlite"
+      [
+        "expo-location",
+        {
+          "locationWhenInUsePermission": "O Bora usa sua localização apenas quando você pede para encontrar partidas próximas."
+        }
+      ]
     ],
     "experiments": {
       "typedRoutes": true
